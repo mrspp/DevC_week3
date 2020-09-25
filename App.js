@@ -4,29 +4,41 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import ChoiceButtons from "./components/ChoiceButtons";
 import CHOICES from "./choices";
 import ChoiceCard from "./components/ChoiceCard";
+import Header from "./components/Header";
+
+const randomComputerChoice = () =>
+  CHOICES[Math.floor(Math.random() * CHOICES.length)];
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userChoice: {},
+      computerChoice: {},
+      result: "Make your choice",
     };
   }
 
   onChoicePress = (choice) => {
     const userChoice = CHOICES.find((item) => item.name === choice);
-    this.setState({ userChoice });
+    const computerChoice = randomComputerChoice();
+    this.setState({ userChoice, computerChoice });
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}></View>
+        <View style={styles.header}>
+          <Header result={this.state.result} />
+        </View>
         <View style={styles.playArea}>
           <View style={styles.choicesContainer}>
             <ChoiceCard playerName="You" choice={this.state.userChoice} />
             <Text>VS</Text>
-            <ChoiceCard playerName="Computer" choice={CHOICES[1]} />
+            <ChoiceCard
+              playerName="Computer"
+              choice={this.state.computerChoice}
+            />
           </View>
         </View>
         <View style={styles.choiceButtons}>
@@ -46,14 +58,12 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 0.15,
-    backgroundColor: "red",
   },
   playArea: {
-    flex: 0.5,
-    backgroundColor: "blue",
+    flex: 0.55,
   },
   choiceButtons: {
-    flex: 0.35,
+    flex: 0.3,
   },
   buttonContainer: {
     alignItems: "center",
