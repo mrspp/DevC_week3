@@ -5,9 +5,27 @@ import ChoiceButtons from "./components/ChoiceButtons";
 import CHOICES from "./choices";
 import ChoiceCard from "./components/ChoiceCard";
 import Header from "./components/Header";
+import { randomComputerChoice, getRoundOutcome } from "./prompt";
 
-const randomComputerChoice = () =>
-  CHOICES[Math.floor(Math.random() * CHOICES.length)];
+// const randomComputerChoice = () =>
+//   CHOICES[Math.floor(Math.random() * CHOICES.length)];
+
+// const getRoundOutcome = (userChoice, computerChoice) => {
+//   let result;
+
+//   if (userChoice === "rock") {
+//     result = computerChoice === "scissors" ? "Victory!" : "Defeat!";
+//   }
+//   if (userChoice === "paper") {
+//     result = computerChoice === "rock" ? "Victory!" : "Defeat!";
+//   }
+//   if (userChoice === "scissors") {
+//     result = computerChoice === "paper" ? "Victory!" : "Defeat!";
+//   }
+
+//   if (userChoice === computerChoice) result = "Tie game!";
+//   return result;
+// };
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,7 +40,8 @@ export default class App extends React.Component {
   onChoicePress = (choice) => {
     const userChoice = CHOICES.find((item) => item.name === choice);
     const computerChoice = randomComputerChoice();
-    this.setState({ userChoice, computerChoice });
+    const result = getRoundOutcome(userChoice.name, computerChoice.name);
+    this.setState({ userChoice, computerChoice, result });
   };
 
   render() {
