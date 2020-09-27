@@ -11,9 +11,8 @@ const randomComputerChoice = () =>
 
 const getRoundOutcome = (userChoice, computerChoice) => {
   let result;
-
   if (userChoice === "Rock") {
-    result = computerChoice === "Scissors" ? "Victory!" : "Defeat!";
+    result = computerChoice === "Scissors" ? `Victory!` : `Defeat!`;
   }
   if (userChoice === "Paper") {
     result = computerChoice === "Rock" ? "Victory!" : "Defeat!";
@@ -22,7 +21,9 @@ const getRoundOutcome = (userChoice, computerChoice) => {
     result = computerChoice === "Paper" ? "Victory!" : "Defeat!";
   }
 
-  if (userChoice === computerChoice) result = "Tie game!";
+  if (userChoice === computerChoice) {
+    result = "Tie game!";
+  }
   return result;
 };
 
