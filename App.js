@@ -1,31 +1,30 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import ChoiceButtons from "./components/ChoiceButtons";
 import CHOICES from "./choices";
 import ChoiceCard from "./components/ChoiceCard";
 import Header from "./components/Header";
-import { randomComputerChoice, getRoundOutcome } from "./prompt";
+// import { randomComputerChoice, getRoundOutcome } from "./prompt";
 
-// const randomComputerChoice = () =>
-//   CHOICES[Math.floor(Math.random() * CHOICES.length)];
+const randomComputerChoice = () =>
+  CHOICES[Math.floor(Math.random() * CHOICES.length)];
 
-// const getRoundOutcome = (userChoice, computerChoice) => {
-//   let result;
+const getRoundOutcome = (userChoice, computerChoice) => {
+  let result;
 
-//   if (userChoice === "rock") {
-//     result = computerChoice === "scissors" ? "Victory!" : "Defeat!";
-//   }
-//   if (userChoice === "paper") {
-//     result = computerChoice === "rock" ? "Victory!" : "Defeat!";
-//   }
-//   if (userChoice === "scissors") {
-//     result = computerChoice === "paper" ? "Victory!" : "Defeat!";
-//   }
+  if (userChoice === "Rock") {
+    result = computerChoice === "Scissors" ? "Victory!" : "Defeat!";
+  }
+  if (userChoice === "Paper") {
+    result = computerChoice === "Rock" ? "Victory!" : "Defeat!";
+  }
+  if (userChoice === "Scissors") {
+    result = computerChoice === "Paper" ? "Victory!" : "Defeat!";
+  }
 
-//   if (userChoice === computerChoice) result = "Tie game!";
-//   return result;
-// };
+  if (userChoice === computerChoice) result = "Tie game!";
+  return result;
+};
 
 export default class App extends React.Component {
   constructor(props) {
